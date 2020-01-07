@@ -9,3 +9,7 @@ echo hello
 echo Hello\nBye
 
 #\n is an escape esquence which prints new line
+
+##\n when we use escape sequence we need to use -e to echo command
+
+echo -e Hello\nBye
