@@ -13,3 +13,7 @@ echo Hello\nBye
 ##\n when we use escape sequence we need to use -e to echo command
 
 echo -e Hello\nBye
+
+##when you enable escape sequences in echo command always provide input in quotes(single or double)
+
+echo -e "Hello\nBye"
