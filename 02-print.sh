@@ -6,6 +6,6 @@ echo hello
 
 ## if we want to print mutiple lines
 
-echo hello\nbye
+echo Hello\nBye
 
 #\n is an escape esquence which prints new line
