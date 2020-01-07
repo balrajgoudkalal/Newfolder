@@ -17,3 +17,6 @@ echo -e Hello\nBye
 ##when you enable escape sequences in echo command always provide input in quotes(single or double)
 
 echo -e "Hello\nBye"
+## to print tab space we have \t escape sequence
+
+echo -e "hello\t\\t\t\t\tt\t\Bye"
