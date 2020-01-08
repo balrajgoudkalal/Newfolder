@@ -7,4 +7,4 @@
 
  #useradd -g $group_name  $user_name
 
- echo following command to be executed =>  useradd -g $group_name  $user_name
+ echo "following command to be executed =>  useradd -g $group_name  $user_name"
