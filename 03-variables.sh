@@ -22,5 +22,9 @@ echo B= $b
 DATE=01-08-2020
 echo hello , good morning today date is $DATE
 
-
-
+# above statement is true for inly one day
+#date is the only value making that statement is wrong
+#to get date dynamically when the script is executed then, we need to use command substitution
+#syntax , VAR=$command or VAR='command' 
+DATE=$(date +%F)
+echo hello , good morning today date is $DATE
