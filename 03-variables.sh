@@ -18,6 +18,9 @@ b="balraj kalal"  #here space is special character
 echo B= $b
 b=*.sh
 echo B= $b
+##
+DATE=01-08-2020
+echo hello , good morning today date is $DATE
 
 
 
