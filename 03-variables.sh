@@ -15,7 +15,7 @@ echo a= $a
 
 # when your data having some spcial characters use quotes..doube is preferred
 b="balraj kalal"  #here space is special character
-
+echo B= $b
 b=*.sh
 echo B= $b
 
