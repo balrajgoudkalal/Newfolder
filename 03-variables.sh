@@ -12,3 +12,11 @@ a=10
 
 #to access a variable we need to prefix a $ character to variable
 echo a= $a
+
+# when your data having some spcial characters use quotes..doube is preferred
+
+b=*.#!/bin/sh
+echo B= $b
+
+
+
