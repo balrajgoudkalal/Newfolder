@@ -20,3 +20,25 @@ echo -e "Hello\nBye"
 ## to print tab space we have \t escape sequence
 
 echo -e "hello\t\\t\t\t\tt\t\Bye"
+
+## to show some colors
+
+##\e to enable color
+##colors are of two types 
+##fore ground
+##back ground
+#syntax of color enabling echo -e "\e[colmHello"  >> COL is one of the Number shown below
+# color       background    foreground
+# red            31             41
+
+# green           32             42
+
+# yellow          33             43
+
+# blue            34             44
+# magenta         35             45
+# cyan            36             46
+
+echo -e "\e[31mRed color"
+echo  -e "\e[33mYellow color"
+echo -e "\e[44mBlue background color"
