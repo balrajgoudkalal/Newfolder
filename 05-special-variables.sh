@@ -2,4 +2,4 @@
 
 #special variables are 0-n, * , @, #
 
-echo $0
+echo name of the script=  $0
