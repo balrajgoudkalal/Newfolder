@@ -44,4 +44,4 @@ echo  -e "\e[33mYellow color"
 echo -e "\e[44mBlue background color"
 
 #color always follows, bcz you enabled color and not disabled the same , to disable use 0 (zero) in place ofcolor code
-echo -e "\e[44mBlue background color\e[0m"
+echo -e "\e[44mBlue background color\e[0m"\
