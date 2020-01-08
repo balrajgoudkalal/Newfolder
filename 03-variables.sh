@@ -15,7 +15,7 @@ echo a= $a
 
 # when your data having some spcial characters use quotes..doube is preferred
 
-b=*.#!/bin/sh
+b=*.sh
 echo B= $b
 
 
