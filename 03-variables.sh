@@ -28,3 +28,6 @@ echo hello , good morning today date is $DATE
 #syntax , VAR=$command or VAR='command' 
 DATE=$(date +%F)
 echo hello , good morning today date is $DATE
+
+### access a variable from CLI
+echo COURSE_NAME=$COURSE_NAME
