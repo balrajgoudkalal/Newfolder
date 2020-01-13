@@ -26,3 +26,7 @@ shell scripting topics
   - Loops
       --    For
       --    While
+
+  - Redirectors:
+
+    
