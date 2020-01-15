@@ -6,8 +6,9 @@
 
  #func_name(){} (thi is second way)
 
-SAMPLE(){
-    echo  this is asmple function
+SAMPLE() {
+
+    echo  this is a sample function
 }
   
   #access the function
