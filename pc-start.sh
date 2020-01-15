@@ -3,7 +3,7 @@
 ACTION=$1
 #start function
 USER_NAME=petclinic
-START-ORDER="config-server discovery-server api-gateway vets-service visits-service customers-service"
+START_ORDER="config-server discovery-server api-gateway vets-service visits-service customers-service"
 STOP_ORDRER="customers-service  visits-service  vets-service api-gateway discovery-server config-server"
 START_F(){
     for service in   $START_ORDER ; do 
@@ -29,3 +29,4 @@ restart)
  STOP_F
  START_F
  ;;  
+esac 
