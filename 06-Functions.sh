@@ -7,7 +7,7 @@
  #func_name(){} (thi is second way)
 
  SAMPLE(){
-     this is asmple function
+    echo  this is asmple function
  }
   
   #access the function
