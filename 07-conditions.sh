@@ -5,12 +5,12 @@
 ACTION=$1
 SERVICE_NAME=DEMO
 
-START_FUNCTION(){
+START_FUNC(){
     echo "starting $SERVICE_NAME service"
 
 }
 
-STOP_FUNCTION(){
+STOP_FUN(){
     echo "stopiing $SERVICE_NAME service"
 }
 
@@ -18,7 +18,6 @@ case $ACTION in
 start)
   START_FUNC
   ;;
-
 stop)
   STOP_FUNC
   ;;
