@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 
 ##define a function
 
@@ -6,9 +6,9 @@
 
  #func_name(){} (thi is second way)
 
- SAMPLE(){
+SAMPLE(){
     echo  this is asmple function
- }
+}
   
   #access the function
   SAMPLE
