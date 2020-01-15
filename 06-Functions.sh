@@ -12,8 +12,11 @@ SAMPLE() {
 }
   
   #access the function
-  SAMPLE
-
+  SAMPLE1(){
+      echo first argument=$1
+  }
+    SAMPLE1 abc 
+    
   #function is a type of command
   #ther are four types of command 1.binaries , 2.shell built in commands ,3.alias 4.Function
   
