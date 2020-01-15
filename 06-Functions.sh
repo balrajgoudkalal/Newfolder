@@ -23,6 +23,7 @@ SAMPLE() {
    
    SAMPLE3(){
        echo hi 
+       return 
        echo bye 
 
    }
@@ -42,7 +43,7 @@ SAMPLE() {
   ## functions are sa simple as command  and it has exit status also
   SAMPLE3 
   echo exit status of SAMPLE3= $?
-  
+
   #function is a type of command
   #there are four types of command 1.binaries , 2.shell built in commands ,3.alias 4.Function
   
