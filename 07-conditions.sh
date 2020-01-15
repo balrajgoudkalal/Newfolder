@@ -13,7 +13,10 @@ START_FUNC(){
 STOP_FUNC(){
     echo "stopiing $SERVICE_NAME service"
 }
-
+USAGE(){
+    echo -e "\n\e[33musage: $0 action(start|stop|restart)"
+ exit 1
+}
 case $ACTION in 
 start)
   START_FUNC
@@ -30,3 +33,37 @@ START_FUNC
  exit 1
  ;;
 esac 
+
+
+#IF statement has three forms 
+#1. Simple IF
+# If [expression]; then
+# execute commands
+#fi
+#2. If-Else
+# If [experession]; then
+# commands
+#else 
+#commands
+#fi
+#3. Else-If
+#If[expression1]; then
+#commands
+#elif[expression2]; then 
+#commands
+#fi
+##expressions are categorized into three again,
+#1. string expressions; operators are =, !=, -z
+#2.Numerical expressions; operators are -eq, -ne,-gt ,-le, -le
+#3.File expressions; refer internet
+
+if [ "$ACTION" = "start" ]; then
+ START_FUNC
+elif [ "$ACTION" = "stop" ]; then
+ STOP_FUNC
+elif [ "$ACTION" = "restart" ]; then
+ STOP_FUNC
+ START-FUNC
+else
+ USAGE
+fi
