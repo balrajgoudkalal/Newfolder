@@ -16,7 +16,6 @@ STOP_FUNCTION(){
 
 case $ACTION in 
 start)
-
   START_FUNC
   ;;
 
