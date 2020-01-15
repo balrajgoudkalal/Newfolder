@@ -10,7 +10,7 @@ START_FUNC(){
 
 }
 
-STOP_FUN(){
+STOP_FUNC(){
     echo "stopiing $SERVICE_NAME service"
 }
 
