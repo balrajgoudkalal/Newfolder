@@ -6,7 +6,7 @@ USER_NAME=petclinic
 START-ORDER="config-server discovery-server api-gateway vets-service visits-service customers-service"
 STOP_ORDRER="customers-service  visits-service  vets-service api-gateway discovery-server config-server"
 START_F(){
-    for service i $START_ORDER ; do 
+    for service  $START_ORDER ; do 
        echo "starting $service service"
        su - $USER_NAME -c  "nohup java -jar /home/$USER_NAME/spring-petclinic-$service.jar &>/home/$USER_NAME/$service.log  &"
        sleep 1
