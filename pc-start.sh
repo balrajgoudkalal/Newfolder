@@ -30,19 +30,22 @@ START_F(){
     done
 
     
-}
 
-##main program
 
-case $ACTION in 
-start)
+ ##main program
+
+ case $ACTION in 
+ start)
  START_F
- ;;
-stop)
+  ;;
+ stop)
  STOP_F
- ;;
-restart)
+  ;;
+ restart)
  STOP_F
  START_F
- ;;  
-esac 
+  ;;  
+ esac 
+
+} 
+
