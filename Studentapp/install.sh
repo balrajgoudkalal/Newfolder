@@ -11,7 +11,7 @@ rm -f $LOG
 echo "WEB SERVER SETUP"
 echo "install web server"
 yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
-if [ $? eq 0 ]; then 
+if [ $? -eq 0 ]; then 
   echo " -SUCCESS"
 else 
   echo " -FAILURE"
