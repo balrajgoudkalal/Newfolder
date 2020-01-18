@@ -6,9 +6,15 @@
 ## Description: this script installs and configures all web components and web components and complete application
 #    taken care by this scripts
 
+#Global variables
 LOG=/tmp/student.log #(to see any o/p)
 rm -f $LOG
-echo "WEB SERVER SETUP"
+#use functions here
+Head (){
+  echo -e "\t\t\t\t\n\e[35m $1 \e[0m\n"
+}
+#main program 
+Head "WEB SERVER SETUP"
 echo "install web server"
 yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
 if [ $? -eq 0 ]; then 
