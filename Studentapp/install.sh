@@ -11,7 +11,7 @@ LOG=/tmp/student.log #(to see any o/p)
 rm -f $LOG
 #use functions here
 Head (){
-  echo -e "\t\t\t\t\n\e[35m $1 \e[0m\n"
+  echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n"  #(here 1 is for bold, 4 is for underline)
 }
 #main program 
 Head "WEB SERVER SETUP"
