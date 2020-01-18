@@ -22,8 +22,8 @@ START_F(){
        else
           i=$(($i+15))
           if [$i -gt $START_TIMEOUT ]; the 
-           echo " - FAILED"
-           exit 1
+             echo " - FAILED"
+             exit 1
           fi 
           sleep 15
        fi 
