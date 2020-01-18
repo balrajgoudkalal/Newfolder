@@ -28,6 +28,8 @@ START_F() {
                      sleep 15
             fi 
         done   
+    done
+    
     }
 
   ##main program
