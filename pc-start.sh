@@ -14,36 +14,36 @@ START_F() {
 
        su - $USER_NAME -c  "nohup java -jar /home/$USER_NAME/spring-petclinic-$SERVICE.jar &>/home/$USER_NAME/$SERVICE.log  &"
        local i=0
-       while [ $i -gt $START_TIMEOUT ]; do 
+        while [ $i -gt $START_TIMEOUT ]; do 
           netstat -lntp | grep $PORT_no &>/dev/null
-          if [ $? -eq 0 ]; then 
-             echo " -STARTED"
-             break
-             else
+            if [ $? -eq 0 ]; then 
+              echo " -STARTED"
+              break
+            else
                   i=$(($i+15))
-                  if [$i -gt $START_TIMEOUT ]; then
-                  echo " - FAILED"
-                 exit 1
-               fi 
-             sleep 15
-           fi 
-       done   
-}
+                    if [$i -gt $START_TIMEOUT ]; then
+                     echo " - FAILED"
+                     exit 1
+                    fi 
+                     sleep 15
+            fi 
+        done   
+    }
 
   ##main program
 
-  case $ACTION in 
-  start)
-  START_F
-    ;;
-  stop)
-  STOP_F
-    ;;
-  restart)
-  STOP_F
-  START_F
-    ;;  
-  esac 
+    case $ACTION in 
+      start)
+        START_F
+        ;;
+      stop)
+        STOP_F
+        ;;
+      restart)
+       STOP_F
+       START_F
+       ;;  
+    esac 
 
 
 
