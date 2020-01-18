@@ -13,9 +13,12 @@ rm -f $LOG
 Head (){
   echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n"  #(here 1 is for bold, 4 is for underline)
 }
+print(){
+  echo -e "  $1\t\t\t "
+}
 #main program 
 Head "WEB SERVER SETUP"
-echo "install web server"
+echo -n "install web server" # (here -n facilitates success message against the command, we can replace echo -n with print)
 yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
 if [ $? -eq 0 ]; then 
   echo " -SUCCESS"
