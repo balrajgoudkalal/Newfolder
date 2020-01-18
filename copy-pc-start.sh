@@ -13,7 +13,7 @@ R="\e[31m"
 N="\e[0m"
 
 ## Start Function 
-START_F() {
+START_F() { 
   for service in $START_ORDER ; do
     SERVICE=$(echo $service | awk -F : '{print $1}')
     PORT_NO=$(echo $service | awk -F : '{print $2}')
