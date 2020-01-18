@@ -21,7 +21,7 @@ START_F(){
        break
        else
           i=$(($i+15))
-          if [$i -gt $START_TIMEOUT ]; the 
+          if [$i -gt $START_TIMEOUT ]; then
              echo " - FAILED"
              exit 1
           fi 
