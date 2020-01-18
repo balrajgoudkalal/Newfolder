@@ -17,5 +17,8 @@ done
 i=60 
 
 while [ $i gt 0]; do
+   date
    sleep 2
    i=$(($i-2))
+
+done
