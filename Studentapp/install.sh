@@ -9,12 +9,17 @@
 #Global variables
 LOG=/tmp/student.log #(to see any o/p)
 rm -f $LOG
+G="\e[32m"
+R="\e[31m"
+N="\e[0m"
+ 
+ 
 #use functions here
 Head (){
   echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n"  #(here 1 is for bold, 4 is for underline)
 }
 print(){
-  echo -e "  $1\t\t\t "
+  echo -e  -n "  $1\t\t\t "
   
 }
 STAT_CHECK(){
