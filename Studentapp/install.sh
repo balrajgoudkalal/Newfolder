@@ -15,14 +15,34 @@ Head (){
 }
 print(){
   echo -e "  $1\t\t\t "
+  
 }
-#main program 
+STAT_CHECK(){
+  if [ $1 -eq 0 ]; then 
+    echo " -SUCCESS"
+  else 
+    echo " -FAILURE"
+    exit 1
+  fi  
+}
+#main program
+USER_ID=$(id -u)
+if [$USER_ID -ne ]; then
+   echo -e "you should be root user to proceed"
+   exit 1
+fi 
+
+
 Head "WEB SERVER SETUP"
 echo -n "install web server" # (here -n facilitates success message against the command, we can replace echo -n with print)
 yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
-if [ $? -eq 0 ]; then 
-  echo " -SUCCESS"
-else 
-  echo " -FAILURE"
-  exit 1
-fi  
+STAT_CHECK $?
+print "clean old index files"
+rm -rf /usr/share/nginx/html/*
+STAT_CHECK $?
+
+cd /usr/share/nginx/html/
+
+print "Download index files"
+curl  -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz 
+STAT_CHECK $?
