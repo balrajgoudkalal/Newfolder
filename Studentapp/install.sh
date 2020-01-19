@@ -13,7 +13,7 @@ G="\e[32m"
 R="\e[31m"
 N="\e[0m"
  
- 
+
 #use functions here
 Head (){
   echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n"  #(here 1 is for bold, 4 is for underline)
@@ -24,9 +24,9 @@ print(){
 }
 STAT_CHECK(){
   if [ $1 -eq 0 ]; then 
-    echo " -SUCCESS"
+    echo -e " ($G)-SUCCESS($N)"
   else 
-    echo " -FAILURE"
+    echo -e " ($R)-FAILURE($N)"
     exit 1
   fi  
 }
