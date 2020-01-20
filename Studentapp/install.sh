@@ -52,9 +52,9 @@ print "Download index files"
 curl  -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz 
 STAT_CHECK $?
 
-print "update the proxy config of nginx"
+print "update nginx proxy config"
 LINE_NO=$(cat -n etc/nginx/nginx.conf | grep 'error_page_404' | grep v '#' |awk '{print $1}')
-sed -i -e "/^#STARTPROXYCONFIG/ , /^#STOPPROXYCONFIG/ d" -e "50 i #STARTPROXYCONFIGlocation /student {
+sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" -e "50 i #STARTPROXYCONFIGlocation /student {
 \n\tproxy_pass http://localhost:8080/student;\n\t#STOPPROXYCONFIG}" /etc/nginx/nginx.conf
 STAT_CHECK $?
 
