@@ -1,7 +1,7 @@
 #!bin/bash
 
 # purpose: setup student application with web+app+ DB components
-##project: student app monolithic
+## project: student app monolithic
 ##author: Balraj
 ## Description: this script installs and configures all web components and web components and complete application
 #    taken care by this scripts
@@ -53,7 +53,7 @@ curl  -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.t
 STAT_CHECK $?
 
 print "update nginx proxy config"
-LINE_NO=$(cat -n etc/nginx/nginx.conf | grep 'error_page_404' | grep v '#' |awk '{print $1}')
+LINE_NO=$(cat -n /etc/nginx/nginx.conf | grep 'error_page 404' | grep -v '#' |awk '{print $1}')
 sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf 
 sed -i -e  "$LINE_NO  i #STARTPROXYCONFIG\n\tlocation /student {\n\tproxy_pass http://localhost:8080/student;\n\t#STOPPROXYCONFIG}" /etc/nginx/nginx.conf
 STAT_CHECK $?
