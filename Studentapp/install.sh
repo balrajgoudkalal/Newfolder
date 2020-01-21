@@ -70,8 +70,13 @@ STAT_CHECK $?
 
 Head "APPLICATION SERVER SETUP"
 print "Adding functional user"
-useradd $FUSERNAME &>>$LOG
-STAT_CHECK $?
+id $FUSERNAME &>>$LOG 
+if [ $? -eq 0 ]; then
+   STAT_CHECK 0
+else
+   useradd $FUSERNAME &>>$LOG
+   STAT_CHECK $?
+fi   
 
 print "install java\t\t"
 yum install java -y &>>$LOG
