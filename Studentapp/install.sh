@@ -31,7 +31,7 @@ STAT_CHECK(){
     echo -e " - ${G}-SUCCESS${N}"
   else 
     echo -e " - ${R}-FAILURE${N}"
-    echo -e "Refer Log :: $Log for more info"
+    echo -e "Refer Log :: $LOG for more info"
     exit 1
   fi  
 }
