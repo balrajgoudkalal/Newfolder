@@ -42,7 +42,7 @@ if [ $USER_ID -ne 0 ]; then
 fi 
 
 Head "WEB SERVER SETUP"
-print "install web server\t" # (here -n facilitates success message against the command, we can replace echo -n with print)
+Print "install web server\t" # (here -n facilitates success message against the command, we can replace echo -n with print)
 yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
 STAT_CHECK $?
 
@@ -63,6 +63,15 @@ sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass h
 STAT_CHECK $?
 
 Print "Starting Nginx Service"
-systemctl enable nginx &>>$LOG 
-systemctl restart nginx &>>$LOG 
-STAT_CHECK $? 
+systemctl enable nginx &>>$LOG
+systemctl restart nginx $>>$LOG
+STAT_CHECK $?
+
+Head "APPLICATION SERVER SETUP"
+Print "Adding functional user"
+useradd $FUSERNAME &>>$LOG
+STAT_CHECK $?
+
+Print "install java"
+yum install java -y &>>$LOG
+STAT_CHECK $?
