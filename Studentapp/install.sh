@@ -81,3 +81,28 @@ fi
 print "install java\t\t"
 yum install java -y &>>$LOG
 STAT_CHECK $?
+
+print "Download Tomcat"
+cd /home/$FUSERNAME
+curl -s $TOMCAT_URL | tar -xz
+STAT_CHECK $?
+
+print "Download Student Application"
+cd $TOMCAT_HOME
+wget https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
+STAT_CHECK $?
+
+print "DOwnload JDBC Driver"
+cd $TOMCAT_HOME
+wget https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar -o lib/mysql-connector.jar
+STAT_CHECK $?
+
+print "Update JDBC parameters"
+cd $TOMCAT_HOME
+sed -i -e '/TestDB/' -e '$ i <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource" maxTotal="100" maxIdle="30" maxWaitMillis="10000" 
+username="student" password="student@1" driverClassName="com.mysql.jdbc.Driver" 
+url="jdbc:mysql://localhost:3306/studentapp"/>' conf/context.xml
+STAT_CHECK $?
+
+
+cd
