@@ -28,9 +28,10 @@ print(){
 }
 STAT_CHECK(){
   if [ $1 -eq 0 ]; then 
-    echo -e " ($G)-SUCCESS($N)"
+    echo -e " - $(G)-SUCCESS$(N)"
   else 
-    echo -e " ($R)-FAILURE($N)"
+    echo -e " - $(R)-FAILURE$(N)"
+    echo -e "Refer Log :: $Log for more info"
     exit 1
   fi  
 }
