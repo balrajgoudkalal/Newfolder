@@ -22,6 +22,7 @@ Head (){
   echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n"  #(here 1 is for bold, 4 is for underline)
 }
 print(){
+  echo -e "\n\n#--------- $1 ---------#" >>$LOG
   echo -e  -n "  $1\t\t\t "
   
 }
@@ -35,11 +36,10 @@ STAT_CHECK(){
 }
 #main program
 USER_ID=$(id -u)
-if [ $USER_ID -ne ]; then
-   echo -e "you should be root user to proceed"
+if [ $USER_ID -ne 0 ]; then
+   echo -e "you should be root user to proceed !!"
    exit 1
 fi 
-
 
 Head "WEB SERVER SETUP"
 Print "install web server\t" # (here -n facilitates success message against the command, we can replace echo -n with print)
@@ -53,7 +53,7 @@ STAT_CHECK $?
 cd /usr/share/nginx/html/
 
 Print "Download index files\t"
-curl  -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz 
+curl -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz 
 STAT_CHECK $?
 
 Print "Update nginx proxy config"
@@ -62,7 +62,7 @@ sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf
 sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass http://localhost:8080/student;\n\t}\n#STOPPROXYCONFIG" /etc/nginx/nginx.conf
 STAT_CHECK $?
 
-Print "starting Nginx service"
+Print "Starting Nginx Service"
 systemctl enable nginx &>>$LOG
 systemctl restart nginx $>>$LOG
 STAT_CHECK $?
