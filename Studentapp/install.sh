@@ -58,7 +58,6 @@ sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf
 sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass http://localhost:8080/student;\n\t}\n#STOPPROXYCONFIG" /etc/nginx/nginx.conf
 STAT_CHECK $?
 
-
 Print "start Nginx service"
 systemctl enable nginx &>>$LOG
 systemctl restart nginx $>>$LOG
