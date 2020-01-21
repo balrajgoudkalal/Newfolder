@@ -59,7 +59,7 @@ sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass h
 STAT_CHECK $?
 
 
-print "start nginx service"
+Print "start Nginx service"
 systemctl enable nginx &>>$LOG
 systemctl restart nginx $>>$LOG
 STAT_CHECK $?
