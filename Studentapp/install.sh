@@ -64,7 +64,7 @@ STAT_CHECK $?
 
 Print "Starting Nginx Service"
 systemctl enable  nginx &>>$LOG
-systemctl restart nginx $>>$LOG
+systemctl restart nginx &>>$LOG
 STAT_CHECK $?
 
 Head "APPLICATION SERVER SETUP"
