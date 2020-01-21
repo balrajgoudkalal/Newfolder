@@ -63,7 +63,7 @@ sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass h
 STAT_CHECK $?
 
 Print "Starting Nginx Service"
-systemctl enable nginx &>>$LOG
+systemctl enable  nginx &>>$LOG
 systemctl restart nginx $>>$LOG
 STAT_CHECK $?
 
@@ -72,6 +72,6 @@ Print "Adding functional user"
 useradd $FUSERNAME &>>$LOG
 STAT_CHECK $?
 
-Print "install java"
+Print "install java\t\t"
 yum install java -y &>>$LOG
 STAT_CHECK $?
