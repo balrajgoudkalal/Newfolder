@@ -68,10 +68,10 @@ systemctl restart nginx &>>$LOG
 STAT_CHECK $?
 
 Head "APPLICATION SERVER SETUP"
-Print "Adding functional user"
+print "Adding functional user"
 useradd $FUSERNAME &>>$LOG
 STAT_CHECK $?
 
-Print "install java\t\t"
+print "install java\t\t"
 yum install java -y &>>$LOG
 STAT_CHECK $?
