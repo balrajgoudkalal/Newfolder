@@ -12,7 +12,10 @@ rm -f $LOG
 G="\e[32m"
 R="\e[31m"
 N="\e[0m"
- 
+FUSERNAME=student
+TOMCAT_VERSION=8.5.47
+TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+TOMCAT_HOME=/home/$FUSERNAME/apache-tomcat-${TOMCAT_VERSION} 
 
 #use functions here
 Head (){
@@ -32,27 +35,28 @@ STAT_CHECK(){
 }
 #main program
 USER_ID=$(id -u)
-if [$USER_ID -ne ]; then
+if [ $USER_ID -ne ]; then
    echo -e "you should be root user to proceed"
    exit 1
 fi 
 
 
 Head "WEB SERVER SETUP"
-echo -n "install web server" # (here -n facilitates success message against the command, we can replace echo -n with print)
+Print "install web server\t" # (here -n facilitates success message against the command, we can replace echo -n with print)
 yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
 STAT_CHECK $?
-print "clean old index files"
+
+Print "clean old index files\t"
 rm -rf /usr/share/nginx/html/* &>>$LOG
 STAT_CHECK $?
 
 cd /usr/share/nginx/html/
 
-print "Download index files"
+Print "Download index files\t"
 curl  -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz 
 STAT_CHECK $?
 
-print "update nginx proxy config"
+Print "Update nginx proxy config"
 LINE_NO=$(cat -n /etc/nginx/nginx.conf | grep 'error_page 404' | grep -v '#' |awk '{print $1}')
 sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf 
 sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass http://localhost:8080/student;\n\t}\n#STOPPROXYCONFIG" /etc/nginx/nginx.conf
