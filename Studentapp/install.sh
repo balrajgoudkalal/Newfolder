@@ -89,12 +89,12 @@ STAT_CHECK $?
 
 print "Download Student Application"
 cd $TOMCAT_HOME
-wget https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
+curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
 STAT_CHECK $?
 
 print "DOwnload JDBC Driver"
 cd $TOMCAT_HOME
-wget https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar -o lib/mysql-connector.jar
+curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar -o lib/mysql-connector.jar
 STAT_CHECK $?
 
 print "Update JDBC parameters"
