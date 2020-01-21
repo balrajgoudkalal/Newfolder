@@ -57,7 +57,7 @@ STAT_CHECK $?
 Print "Update nginx proxy config"
 LINE_NO=$(cat -n /etc/nginx/nginx.conf | grep 'error_page 404' | grep -v '#' |awk '{print $1}')
 sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf
-sed -i  -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass http://localhost:8080/student;\n\t}\n#STOPPROXYCONFIG" /etc/nginx/nginx.conf
+sed -i  -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /Student {\n\t\tproxy_pass http://localhost:8080/Student;\n\t}\n#STOPPROXYCONFIG" /etc/nginx/nginx.conf
 STAT_CHECK $? 
 
 Print "Starting Nginx Service"
