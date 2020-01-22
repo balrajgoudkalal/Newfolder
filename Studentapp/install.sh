@@ -84,7 +84,7 @@ STAT_CHECK $?
 
 print "Download Tomcat"
 cd /home/$FUSERNAME
-curl -s $TOMCAT_URL | tar -xz
+curl -s http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz | tar -xz
 STAT_CHECK $?
 
 print "Download Student Application"
