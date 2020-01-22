@@ -14,7 +14,7 @@ R="\e[31m"
 N="\e[0m"
 FUSERNAME=student
 TOMCAT_VERSION=8.5.47
-TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz | tar -xz
+TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz 
 TOMCAT_HOME=/home/$FUSERNAME/apache-tomcat-${TOMCAT_VERSION} 
 
 #use functions here
@@ -70,9 +70,9 @@ STAT_CHECK $?
 
 Head "APPLICATION SERVER SETUP"
 print "Adding functional user"
-id $FUSERNAME &>>$LOG 
+id $FUSERNAME &>>$LOG
 if [ $? -eq 0 ]; then
-   STAT_CHECK $?
+   STAT_CHECK 0
 else
    useradd $FUSERNAME &>>$LOG
    STAT_CHECK $?
@@ -82,17 +82,17 @@ print "install java\t\t"
 yum install java -y &>>$LOG
 STAT_CHECK $?
 
-print "Download Tomcat"
+print "Download Tomcat\t"
 cd /home/$FUSERNAME
-curl -s http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz | tar -xz
+curl -s $TOMCAT_URL | tar -xz
 STAT_CHECK $?
-
+ 
 print "Download Student Application"
 cd $TOMCAT_HOME
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
 STAT_CHECK $?
 
-print "DOwnload JDBC Driver"
+print "Download JDBC Driver"
 cd $TOMCAT_HOME
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar -o lib/mysql-connector.jar
 STAT_CHECK $?
