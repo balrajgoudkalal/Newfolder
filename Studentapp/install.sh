@@ -14,37 +14,37 @@ R="\e[31m"
 N="\e[0m"
 FUSERNAME=student
 TOMCAT_VERSION=8.5.47
-TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz 
-TOMCAT_HOME=/home/$FUSERNAME/apache-tomcat-${TOMCAT_VERSION} 
+TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
+TOMCAT_HOME=/home/$FUSERNAME/apache-tomcat-${TOMCAT_VERSION}
 
 #use functions here
-Head (){
-  echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n"  #(here 1 is for bold, 4 is for underline)
+Head() {
+  echo -e "\t\t\t\t\n\e[1;4;35m $1 \e[0m\n" #(here 1 is for bold, 4 is for underline)
 }
-print(){
+print() {
   echo -e "\n\n#--------- $1 ---------#" >>$LOG
-  echo -e  -n "  $1\t\t\t "
-  
+  echo -e -n "  $1\t\t\t "
+
 }
-STAT_CHECK(){
-  if [ $1 -eq 0 ]; then 
+STAT_CHECK() {
+  if [ $1 -eq 0 ]; then
     echo -e " - ${G}-SUCCESS${N}"
-  else 
+  else
     echo -e " - ${R}-FAILURE${N}"
     echo -e "Refer Log :: $LOG for more info"
     exit 1
-  fi  
+  fi
 }
 #main program
 USER_ID=$(id -u)
 if [ $USER_ID -ne 0 ]; then
-   echo -e "you should be root user to proceed !!"
-   exit 1
-fi 
+  echo -e "you should be root user to proceed !!"
+  exit 1
+fi
 
 Head "WEB SERVER SETUP"
 print "install web server\t" # (here -n facilitates success message against the command, we can replace echo -n with print)
-yum install nginx -y &>>$LOG  #(&>>$LOG --if you dont want to see logs )
+yum install nginx -y &>>$LOG #(&>>$LOG --if you dont want to see logs )
 STAT_CHECK $?
 
 print "clean old index files\t"
@@ -53,18 +53,18 @@ STAT_CHECK $?
 
 cd /usr/share/nginx/html/
 
-print "Download index files\t"
-curl -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz 
+p rint "Download index files\t"
+curl -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz
 STAT_CHECK $?
 
 print "Update nginx proxy config"
-LINE_NO=$(cat -n /etc/nginx/nginx.conf | grep 'error_page 404' | grep -v '#' |awk '{print $1}')
-sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf 
+LINE_NO=$(cat -n /etc/nginx/nginx.conf | grep 'error_page 404' | grep -v '#' | awk '{print $1}')
+sed -i -e "/^#STARTPROXYCONFIG/,/^#STOPPROXYCONFIG/ d" /etc/nginx/nginx.conf
 sed -i -e "$LINE_NO i #STARTPROXYCONFIG\n\tlocation /student {\n\t\tproxy_pass http://localhost:8080/student;\n\t}\n#STOPPROXYCONFIG" /etc/nginx/nginx.conf
 STAT_CHECK $?
 
 print "Starting Nginx Service"
-systemctl enable  nginx &>>$LOG
+systemctl enable nginx &>>$LOG
 systemctl restart nginx &>>$LOG
 STAT_CHECK $?
 
@@ -72,21 +72,21 @@ Head "APPLICATION SERVER SETUP"
 print "Adding functional user"
 id $FUSERNAME &>>$LOG
 if [ $? -eq 0 ]; then
-   STAT_CHECK 0
+  STAT_CHECK 0
 else
-   useradd $FUSERNAME &>>$LOG
-   STAT_CHECK $?
-fi   
+  useradd $FUSERNAME &>>$LOG
+  STAT_CHECK $?
+fi
 
 print "install java\t\t"
 yum install java -y &>>$LOG
 STAT_CHECK $?
 
 print "Download Tomcat\t"
-cd /home/$FUSERNAME
-curl -s $TOMCAT_URL |tar -xz
+cd /home/student
+curl -s http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz | tar -xz
 STAT_CHECK $?
- 
+
 print "Download Student Application"
 cd $TOMCAT_HOME
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
@@ -103,4 +103,3 @@ sed -i -e '/TestDB/ d' -e '$ i <Resource name="jdbc/TestDB" auth="Container" typ
 maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="student" password="student@1" 
 driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/studentapp"/>' conf/context.xml
 STAT_CHECK $?
-
