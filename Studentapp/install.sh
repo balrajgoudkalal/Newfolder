@@ -84,7 +84,7 @@ STAT_CHECK $?
 
 print "Download Tomcat\t"
 cd /home/student
-curl -s $TOMCAT_URL | tar -xf
+curl -s $TOMCAT_URL | tar --uncompress
 STAT_CHECK $?
 
 print "Download Student Application"
