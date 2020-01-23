@@ -13,7 +13,7 @@ G="\e[32m"
 R="\e[31m"
 N="\e[0m"
 FUSERNAME=student
-TOMCAT_VERSION=8.5.47
+TOMCAT_VERSION=8.5.50
 TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
 TOMCAT_HOME=/home/$FUSERNAME/apache-tomcat-${TOMCAT_VERSION}
 
@@ -86,8 +86,6 @@ print "Download Tomcat\t"
 cd /home/$FUSERNAME
 curl -s $TOMCAT_URL | tar -xz
 STAT_CHECK $? 
-
-
 print "Download Student Application"
 cd $TOMCAT_HOME
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
