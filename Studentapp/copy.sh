@@ -14,7 +14,7 @@ G="\e[32m"
 R="\e[31m"
 N="\e[0m"
 FUSERNAME=student
-TOMCAT_VERSION=8.5.47
+TOMCAT_VERSION=8.5.50
 TOMCAT_URL=http://apachemirror.wuchna.com/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
 TOMCAT_HOME=/home/$FUSERNAME/apache-tomcat-${TOMCAT_VERSION}
 
