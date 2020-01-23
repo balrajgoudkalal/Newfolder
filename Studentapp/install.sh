@@ -100,3 +100,19 @@ print "Update JDBC parameters"
 cd $TOMCAT_HOME
 sed -i -e '/TestDB/ d' -e '$ i <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource" maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="student" password="student@1" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/studentapp"/>' conf/context.xml 
 STAT_CHECK $?
+
+chown $FUSERNAME:$FUSERNAME /home/$FUSERNAME -R
+
+print "Download Tomcat init script"
+curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/tomcat-init -o /etc/init.d/tomcat
+STAT_CHECK $?
+
+print "load Tomcat script to systemd"
+chmod +x /etc/init.d/tomcat
+systemctl daemon-reload &>>$LOG
+STAT_CHECK $?
+
+print "Start Tomcat Service "
+systemctl enable tomcat &>>$LOG
+systemctl restart tomcat &>>$LOG
+STAT_CHECK $?
