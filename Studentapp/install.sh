@@ -53,7 +53,7 @@ STAT_CHECK $?
 
 cd /usr/share/nginx/html/
 
-p rint "Download index files\t"
+print "Download index files\t"
 curl -s https://studentapi-cit.s3-us-west-2.amazonaws.com/studentapp-frontend.tar.gz | tar -xz
 STAT_CHECK $?
 
@@ -84,7 +84,7 @@ STAT_CHECK $?
 
 print "Download Tomcat\t"
 cd /home/student
-curl -s http://apachemirror.wuchna.com/tomcat/tomcat-8/v8.5.47/bin/apache-tomcat-8.5.47.tar.gz | tar -xz
+curl -s $TOMCAT_URL | tar -xf
 STAT_CHECK $?
 
 print "Download Student Application"
