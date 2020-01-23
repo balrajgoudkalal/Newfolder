@@ -98,7 +98,5 @@ STAT_CHECK $?
 
 print "Update JDBC parameters"
 cd $TOMCAT_HOME
-sed -i -e '/TestDB/ d' -e '$ i <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource" 
-maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="student" password="student@1" 
-driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/studentapp"/>' conf/context.xml
+sed -i -e '/TestDB/ d' -e '$ i <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource" maxTotal="100" maxIdle="30" maxWaitMillis="10000" username="student" password="student@1" driverClassName="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/studentapp"/>' conf/context.xml 
 STAT_CHECK $?
