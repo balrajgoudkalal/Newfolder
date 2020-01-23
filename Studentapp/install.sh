@@ -83,9 +83,10 @@ yum install java -y &>>$LOG
 STAT_CHECK $?
 
 print "Download Tomcat\t"
-cd /home/student
-curl -s $TOMCAT_URL | tar -z
-STAT_CHECK $?
+cd /home/$FUSERNAME
+curl -s $TOMCAT_URL | tar -xz
+STAT_CHECK $? 
+
 
 print "Download Student Application"
 cd $TOMCAT_HOME
