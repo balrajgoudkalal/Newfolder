@@ -91,7 +91,7 @@ cd $TOMCAT_HOME
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/student.war -o webapps/student.war
 STAT_CHECK $?
 
-print "Download JDBC Driver"
+print "Download JDBC Driver\t"
 cd $TOMCAT_HOME
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/mysql-connector.jar -o lib/mysql-connector.jar
 STAT_CHECK $?
@@ -112,7 +112,7 @@ chmod +x /etc/init.d/tomcat
 systemctl daemon-reload &>>$LOG
 STAT_CHECK $?
 
-print "Start Tomcat Service "
+print "Start Tomcat Service\t "
 systemctl enable tomcat &>>$LOG
 systemctl restart tomcat &>>$LOG
 STAT_CHECK $?
