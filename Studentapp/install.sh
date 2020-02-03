@@ -129,6 +129,6 @@ STAT_CHECK $?
 
 print "load schema \t\t"
 curl -s https://s3-us-west-2.amazonaws.com/studentapi-cit/studentapp-ui-proj1.sql -O /tmp/schema.sql 
-mysql </tmp/schema.sql
+mysql </tmp/studentapp.sql
 STAT_CHECK $?
 
