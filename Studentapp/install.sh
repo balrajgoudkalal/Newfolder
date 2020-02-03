@@ -122,7 +122,7 @@ print "Install MariaDB server"
 yum install mariadb-server -y &>>$LOG
 STAT_CHECK $?
 
-print "Start MariaDB Service"
+print "Start MariaDB Service\t"
 systemctl enable mariadb &>>$LOG
 systemctl start mariadb &>>$LOG
 STAT_CHECK $?
